@@ -43,27 +43,22 @@ namespace ExecuteMove.Controllers
             TicTacToe ttt = new TicTacToe(inputPayload.gameBoard,
                 inputPayload.azurePlayerSymbol, inputPayload.humanPlayerSymbol);
             WinStatus ws = ttt.winStatus;
-            (int, int) moveTuple = ttt.NextMove();
+            //(int, int) moveTuple = ttt.NextMove();
+            (int, int) minimax = ttt.MinimaxNextMove();
 
             List<string> resultBoard = new List<string>();
-            try
-            {
-                resultBoard = TicTacToe.BoardToList(ttt.ResultingBoard(ttt.board, (0, 1), "X"));
-            }
-            catch (ArgumentException e)
-            {
-                resultBoard.Add(e.Message);
-            }
+
 
             OutputPayload complexOutput = new OutputPayload()
             {
-                move = (moveTuple.Item1 < 0) ? null : TicTacToe.TupleToMove(moveTuple),
+                //move = (moveTuple.Item1 < 0) ? null : TicTacToe.TupleToMove(moveTuple),
+                move = -1,
                 azurePlayerSymbol = inputPayload.azurePlayerSymbol,
                 humanPlayerSymbol = inputPayload.humanPlayerSymbol,
                 winner = ws.winner,
                 winPositions = (ws.winPositions == null) ? null : ws.winPositions.ConvertAll(i => i.ToString()),
                 gameBoard = TicTacToe.BoardToList(ttt.board),
-                message = "result board: [" + String.Join(", ", resultBoard.ToArray()),
+                message = "minimax move: " + TicTacToe.TupleToMove(minimax).ToString(),
             };
 
             return complexOutput;

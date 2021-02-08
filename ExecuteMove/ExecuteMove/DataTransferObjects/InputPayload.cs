@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using System.Linq;
 
 namespace ExecuteMove.DataTransferObjects
 {
@@ -97,6 +98,58 @@ namespace ExecuteMove.DataTransferObjects
             return (ws.winner.Equals(GAME_NOT_DONE_STR)) ? false : true;
         }
 
+        // Returns a list of available moves
+        public static List<(int,int)> AvailableMoves(string[,] board)
+        {
+            List<(int, int)> openTiles = new List<(int, int)>();
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                    if (board[i, j].Equals(UNMARKED))
+                        openTiles.Add((i, j));
+            return openTiles;
+        }
+
+        public static int MaxValue(string[,] board)
+        {
+            if (IsTerminal(board))
+                return ValueOfGame(board);
+            int value = int.MinValue; // Initialize to worst possible outcome wrt maximizer
+            List<(int, int)> moves = AvailableMoves(board);
+            foreach ((int, int) move in moves)
+                value = Math.Max(value, MinValue(TicTacToe.ResultingBoard(board, move, X)));
+            return value;
+        }
+
+        public static int MinValue(string[,] board)
+        {
+            if (IsTerminal(board))
+                return ValueOfGame(board);
+            int value = int.MaxValue;
+            List<(int, int)> moves = AvailableMoves(board);
+            foreach ((int, int) move in moves)
+                value = Math.Min(value, MaxValue(TicTacToe.ResultingBoard(board, move, O)));
+            return value;
+        }
+
+        public (int, int) MinimaxNextMove()
+        {
+            if (winStatus.winner != GAME_NOT_DONE_STR)
+                return (-1, -1); // sentinel value for no move
+            List<(int, int)> moves = TicTacToe.AvailableMoves(board);
+
+            // Case: Azure is maximizer ("X")
+            if (azurePlayerSymbol.Equals(X))
+            {
+                return moves.OrderByDescending(move => MinValue(
+                        ResultingBoard(board, move, X))).First();
+            }
+            else
+            {
+                return moves.OrderByDescending(move => MaxValue(
+                    ResultingBoard(board, move, O))).Last();
+            }
+        }
+
         // Chooses next move
         public (int, int) NextMove()
         {
@@ -128,7 +181,7 @@ namespace ExecuteMove.DataTransferObjects
         }
 
         // Returns board resulting from making a valid move
-        public string[,] ResultingBoard(string[,] bd, (int, int) move, string marker)
+        public static string[,] ResultingBoard(string[,] bd, (int, int) move, string marker)
         {
             if (!(bd[move.Item1, move.Item2].Equals(UNMARKED)))
                 // Raise error
