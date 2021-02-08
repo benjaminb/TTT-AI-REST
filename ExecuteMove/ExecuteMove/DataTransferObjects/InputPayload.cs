@@ -25,7 +25,7 @@ namespace ExecuteMove.DataTransferObjects
         private const string X = "X";
         private const string O = "O";
         private const string UNMARKED = "?";
-        private const string GAME_NOT_DONE_STR = "inconclusive";
+        public const string GAME_NOT_DONE_STR = "inconclusive";
         private const string TIE_STR = "tie";
         private static HashSet<string> VALID_SYMBOLS = new HashSet<string>() { X, O, UNMARKED };
 
@@ -131,23 +131,18 @@ namespace ExecuteMove.DataTransferObjects
             return value;
         }
 
-        public (int, int) MinimaxNextMove()
+        public int MinimaxNextMove()
         {
             if (winStatus.winner != GAME_NOT_DONE_STR)
-                return (-1, -1); // sentinel value for no move
+                return -1; // sentinel value for no move
             List<(int, int)> moves = TicTacToe.AvailableMoves(board);
-
             // Case: Azure is maximizer ("X")
             if (azurePlayerSymbol.Equals(X))
-            {
-                return moves.OrderByDescending(move => MinValue(
-                        ResultingBoard(board, move, X))).First();
-            }
+                return TupleToMove(moves.OrderByDescending(move => MinValue(
+                        ResultingBoard(board, move, X))).First());
             else
-            {
-                return moves.OrderByDescending(move => MaxValue(
-                    ResultingBoard(board, move, O))).Last();
-            }
+                return TupleToMove(moves.OrderByDescending(move => MaxValue(
+                    ResultingBoard(board, move, O))).Last());
         }
 
         // Chooses next move

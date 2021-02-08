@@ -44,21 +44,21 @@ namespace ExecuteMove.Controllers
                 inputPayload.azurePlayerSymbol, inputPayload.humanPlayerSymbol);
             WinStatus ws = ttt.winStatus;
             //(int, int) moveTuple = ttt.NextMove();
-            (int, int) minimax = ttt.MinimaxNextMove();
-
+            //int minimax = ttt.MinimaxNextMove();
+            int? nextMove = ws.winner.Equals(TicTacToe.GAME_NOT_DONE_STR) ? ttt.MinimaxNextMove() : null;
             List<string> resultBoard = new List<string>();
 
 
             OutputPayload complexOutput = new OutputPayload()
             {
                 //move = (moveTuple.Item1 < 0) ? null : TicTacToe.TupleToMove(moveTuple),
-                move = -1,
+                move = nextMove,
                 azurePlayerSymbol = inputPayload.azurePlayerSymbol,
                 humanPlayerSymbol = inputPayload.humanPlayerSymbol,
                 winner = ws.winner,
                 winPositions = (ws.winPositions == null) ? null : ws.winPositions.ConvertAll(i => i.ToString()),
                 gameBoard = TicTacToe.BoardToList(ttt.board),
-                message = "minimax move: " + TicTacToe.TupleToMove(minimax).ToString(),
+                message = "msg",
             };
 
             return complexOutput;
