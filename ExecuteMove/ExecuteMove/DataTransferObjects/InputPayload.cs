@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace ExecuteMove.DataTransferObjects
@@ -34,6 +35,7 @@ namespace ExecuteMove.DataTransferObjects
 
         public TicTacToe(List<string> inputStr, string azPlayerSymbol, string huPlayerSymbol)
         {
+            // Convert board as list to 2d array
             board = new string[3, 3];
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
@@ -125,7 +127,25 @@ namespace ExecuteMove.DataTransferObjects
             return count % 2 == 0 ? X : O;
         }
 
-        private static int Utility(string[,] board)
+        // Returns board resulting from making a valid move
+        public string[,] ResultingBoard(string[,] bd, (int, int) move, string marker)
+        {
+            if (!(bd[move.Item1, move.Item2].Equals(UNMARKED)))
+                // Raise error
+                throw new ArgumentException("Board already has a marker at that spot", marker); 
+            else
+            {
+                string[,] resultBoard = new string[3, 3];
+                for (int i = 0; i < 3; i++)
+                    for (int j = 0; j < 3; j++)
+                        resultBoard[i, j] = bd[i, j];
+                resultBoard[move.Item1, move.Item2] = marker;
+                return resultBoard;
+            }
+        }
+
+        // For a zero-sum game, X seeks to maximize value and O seeks to minimize
+        public static int ValueOfGame(string[,] board)
         {
             WinStatus ws = GetWinStatus(board);
             if (ws.winner.Equals(X))

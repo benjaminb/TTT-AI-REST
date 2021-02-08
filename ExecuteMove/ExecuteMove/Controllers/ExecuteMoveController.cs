@@ -39,11 +39,21 @@ namespace ExecuteMove.Controllers
             if (!(TicTacToe.BoardIsValid(inputPayload.gameBoard)))
                 return BadRequest(400);
 
+            // Assemble response
             TicTacToe ttt = new TicTacToe(inputPayload.gameBoard,
                 inputPayload.azurePlayerSymbol, inputPayload.humanPlayerSymbol);
             WinStatus ws = ttt.winStatus;
-
             (int, int) moveTuple = ttt.NextMove();
+
+            List<string> resultBoard = new List<string>();
+            try
+            {
+                resultBoard = TicTacToe.BoardToList(ttt.ResultingBoard(ttt.board, (0, 1), "X"));
+            }
+            catch (ArgumentException e)
+            {
+                resultBoard.Add(e.Message);
+            }
 
             OutputPayload complexOutput = new OutputPayload()
             {
@@ -53,7 +63,7 @@ namespace ExecuteMove.Controllers
                 winner = ws.winner,
                 winPositions = (ws.winPositions == null) ? null : ws.winPositions.ConvertAll(i => i.ToString()),
                 gameBoard = TicTacToe.BoardToList(ttt.board),
-                message = "azure player: " + inputPayload.azurePlayerSymbol + ", human: " + inputPayload.humanPlayerSymbol,
+                message = "result board: [" + String.Join(", ", resultBoard.ToArray()),
             };
 
             return complexOutput;
