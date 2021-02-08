@@ -1,0 +1,12 @@
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\ExecuteMove.exe
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\appsettings.json
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\ExecuteMove.dll
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\ExecuteMove.deps.json
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\ExecuteMove.runtimeconfig.json
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\ExecuteMove.pdb
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\Microsoft.OpenApi.dll
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Release\net5.0\PubTmp\Out\ExecuteMove.xml

@@ -23,17 +23,17 @@
             The optimal move found by minimax, or null if the game is at a terminal state (win or tie).
             </returns>
         </member>
-        <member name="P:ExecuteMove.DataTransferObjects.OutputPayload.move">
-            <summary>
-            Example renaming a property using JsonProperyName
-            </summary>
-        </member>
         <member name="T:ExecuteMove.DataTransferObjects.InputPayload">
             <summary>
             Test class
             </summary>
         </member>
         <member name="P:ExecuteMove.DataTransferObjects.InputPayload.move">
+            <summary>
+            Example renaming a property using JsonProperyName
+            </summary>
+        </member>
+        <member name="P:ExecuteMove.DataTransferObjects.OutputPayload.move">
             <summary>
             Example renaming a property using JsonProperyName
             </summary>

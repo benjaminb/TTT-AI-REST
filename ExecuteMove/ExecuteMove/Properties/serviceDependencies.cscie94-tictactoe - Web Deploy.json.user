@@ -1,0 +1,30 @@
+{
+  "dependencies": {},
+  "parameters": {
+    "cscie94-executeMove.subscriptionId": {
+      "Name": "cscie94-executeMove.subscriptionId",
+      "Type": "subscription",
+      "Value": "1d9fc71c-fdb7-4a26-8f48-d2094f24592b"
+    },
+    "cscie94-executeMove.resourceName": {
+      "Name": "cscie94-executeMove.resourceName",
+      "Type": null,
+      "Value": "cscie94-executeMove"
+    },
+    "cscie94-executeMove.resourceGroupLocation": {
+      "Name": "cscie94-executeMove.resourceGroupLocation",
+      "Type": null,
+      "Value": "eastus"
+    },
+    "cscie94-executeMove.resourceGroupName": {
+      "Name": "cscie94-executeMove.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "rg-free"
+    },
+    "subscriptionId": {
+      "Name": "subscriptionId",
+      "Type": "subscription",
+      "Value": "1d9fc71c-fdb7-4a26-8f48-d2094f24592b"
+    }
+  }
+}

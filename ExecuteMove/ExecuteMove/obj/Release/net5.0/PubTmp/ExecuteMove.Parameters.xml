@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="tictactoe-ai-api" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^\\\\Mac\\Dropbox\\School\\CS94\\01-Assignment\\TTT-AI-REST\\ExecuteMove\\ExecuteMove\\obj\\Release\\net5\.0\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

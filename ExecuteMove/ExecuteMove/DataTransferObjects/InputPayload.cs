@@ -20,9 +20,12 @@ namespace ExecuteMove.DataTransferObjects
 
     public class TicTacToe
     {
-        private static string GAME_NOT_DONE_STR = "inconclusive";
-        private static string TIE_STR = "tie";
-        private static HashSet<string> VALID_SYMBOLS = new HashSet<string>() { "X", "O", "?" };
+        private const string X = "X";
+        private const string O = "O";
+        private const string UNMARKED = "?";
+        private const string GAME_NOT_DONE_STR = "inconclusive";
+        private const string TIE_STR = "tie";
+        private static HashSet<string> VALID_SYMBOLS = new HashSet<string>() { X, O, UNMARKED };
 
         public string[,] board;
         public WinStatus winStatus;
@@ -74,9 +77,9 @@ namespace ExecuteMove.DataTransferObjects
                 // All symbols valid?
                 if (!(VALID_SYMBOLS.Contains(boardList[i])))
                     return false;
-                if (boardList[i].Equals("X"))
+                if (boardList[i].Equals(X))
                     X_count++;
-                else if (boardList[i].Equals("O"))
+                else if (boardList[i].Equals(O))
                     O_count++;
             }
 
@@ -85,6 +88,11 @@ namespace ExecuteMove.DataTransferObjects
                 return false;
 
             return true;
+        }
+        public static bool IsTerminal(string[,] board)
+        {
+            WinStatus ws = GetWinStatus(board);
+            return (ws.winner.Equals(GAME_NOT_DONE_STR)) ? false : true;
         }
 
         // Chooses next move
@@ -104,6 +112,7 @@ namespace ExecuteMove.DataTransferObjects
                     }
             return (-1, -1); // No moves left
         }
+        
 
         // Determines whose turn it is
         public string Player()
@@ -113,9 +122,19 @@ namespace ExecuteMove.DataTransferObjects
                 for (int j = 0; j < 3; j++)
                     if (board[i, j] != "?")
                         count++;
-            return count % 2 == 0 ? "X" : "O";
+            return count % 2 == 0 ? X : O;
         }
 
+        private static int Utility(string[,] board)
+        {
+            WinStatus ws = GetWinStatus(board);
+            if (ws.winner.Equals(X))
+                return 1;
+            else if (ws.winner.Equals(O))
+                return -1;
+            else
+                return 0;
+        }
         public static WinStatus GetWinStatus(string[,] board)
         {
 
