@@ -1,0 +1,9 @@
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\RestClientSDKLibrary\bin\Debug\netcoreapp3.1\RestClientSDKLibrary.deps.json
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\RestClientSDKLibrary\bin\Debug\netcoreapp3.1\RestClientSDKLibrary.dll
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\RestClientSDKLibrary\bin\Debug\netcoreapp3.1\RestClientSDKLibrary.pdb
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\RestClientSDKLibrary\obj\Debug\netcoreapp3.1\RestClientSDKLibrary.csprojAssemblyReference.cache
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\RestClientSDKLibrary\obj\Debug\netcoreapp3.1\RestClientSDKLibrary.AssemblyInfoInputs.cache
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\RestClientSDKLibrary\obj\Debug\netcoreapp3.1\RestClientSDKLibrary.AssemblyInfo.cs
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\RestClientSDKLibrary\obj\Debug\netcoreapp3.1\RestClientSDKLibrary.csproj.CoreCompileInputs.cache
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\RestClientSDKLibrary\obj\Debug\netcoreapp3.1\RestClientSDKLibrary.dll
+\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\RestClientSDKLibrary\obj\Debug\netcoreapp3.1\RestClientSDKLibrary.pdb
