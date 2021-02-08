@@ -12,7 +12,6 @@
 \\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 \\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 \\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-\\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Debug\net5.0\ExecuteMove.csprojAssemblyReference.cache
 \\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Debug\net5.0\ExecuteMove.GeneratedMSBuildEditorConfig.editorconfig
 \\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Debug\net5.0\ExecuteMove.AssemblyInfoInputs.cache
 \\Mac\Dropbox\School\CS94\01-Assignment\TTT-AI-REST\ExecuteMove\ExecuteMove\obj\Debug\net5.0\ExecuteMove.AssemblyInfo.cs

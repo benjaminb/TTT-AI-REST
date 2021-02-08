@@ -39,16 +39,23 @@ namespace ExecuteMove.Controllers
             if (!(TicTacToe.BoardIsValid(inputPayload.gameBoard)))
                 return BadRequest(400);
 
-            // Assemble response
+            // Compute response
             TicTacToe ttt = new TicTacToe(inputPayload.gameBoard,
                 inputPayload.azurePlayerSymbol, inputPayload.humanPlayerSymbol);
             WinStatus ws = ttt.winStatus;
-            //(int, int) moveTuple = ttt.NextMove();
-            //int minimax = ttt.MinimaxNextMove();
-            int? nextMove = ws.winner.Equals(TicTacToe.GAME_NOT_DONE_STR) ? ttt.MinimaxNextMove() : null;
-            List<string> resultBoard = new List<string>();
 
+            // Get the AI's next move if game isn't over
+            int? nextMove;
+            if (ws.winner.Equals(TicTacToe.GAME_NOT_DONE_STR))
+            {
+                int choice = ttt.MinimaxNextMove();
+                ttt[TicTacToe.MoveToTuple(choice)] = inputPayload.azurePlayerSymbol;
+                nextMove = choice;
+            }
+            else
+                nextMove = null;
 
+            // Assemble response payload
             OutputPayload complexOutput = new OutputPayload()
             {
                 //move = (moveTuple.Item1 < 0) ? null : TicTacToe.TupleToMove(moveTuple),
