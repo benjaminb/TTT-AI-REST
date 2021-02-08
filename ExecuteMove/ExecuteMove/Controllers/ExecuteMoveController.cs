@@ -31,9 +31,9 @@ namespace ExecuteMove.Controllers
         /// </returns>
         [HttpPost]
         [Route("executemove")]
-        [ProducesResponseType(typeof(ComplexOutputPayload), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OutputPayload), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(int), StatusCodes.Status400BadRequest)] // Tells swagger that the response format will be an int for a BadRequest (400)
-        public ActionResult<ComplexOutputPayload> ProcessComplexInput([FromBody] ComplexInputPayload inputPayload)
+        public ActionResult<OutputPayload> ProcessComplexInput([FromBody] InputPayload inputPayload)
         {
             // Ensure valid board
             if (!(TicTacToe.BoardIsValid(inputPayload.gameBoard)))
@@ -45,7 +45,7 @@ namespace ExecuteMove.Controllers
 
             (int, int) moveTuple = ttt.NextMove();
 
-            ComplexOutputPayload complexOutput = new ComplexOutputPayload()
+            OutputPayload complexOutput = new OutputPayload()
             {
                 move = (moveTuple.Item1 < 0) ? null : TicTacToe.TupleToMove(moveTuple),
                 azurePlayerSymbol = inputPayload.azurePlayerSymbol,

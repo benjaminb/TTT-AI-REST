@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace ExecuteMove.DataTransferObjects
 {
-    public class ComplexOutputPayload
+    public class OutputPayload
     {
         /// <summary>
         /// Example renaming a property using JsonProperyName

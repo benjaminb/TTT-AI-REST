@@ -15,7 +15,7 @@
             Initializes a new instance of the <see cref="N:ExecuteMove"/> class.
             </summary>
         </member>
-        <member name="M:ExecuteMove.Controllers.ExecuteMoveController.ProcessComplexInput(ExecuteMove.DataTransferObjects.ComplexInputPayload)">
+        <member name="M:ExecuteMove.Controllers.ExecuteMoveController.ProcessComplexInput(ExecuteMove.DataTransferObjects.InputPayload)">
             <summary>
             Provides an AI-generated optimal countermove to a tic-tac-toe game state by using minimax.
             </summary>
@@ -23,62 +23,20 @@
             The optimal move found by minimax, or null if the game is at a terminal state (win or tie).
             </returns>
         </member>
-        <member name="T:ExecuteMove.DataTransferObjects.ComplexInputPayload">
+        <member name="P:ExecuteMove.DataTransferObjects.OutputPayload.move">
+            <summary>
+            Example renaming a property using JsonProperyName
+            </summary>
+        </member>
+        <member name="T:ExecuteMove.DataTransferObjects.InputPayload">
             <summary>
             Test class
             </summary>
         </member>
-        <member name="P:ExecuteMove.DataTransferObjects.ComplexInputPayload.move">
+        <member name="P:ExecuteMove.DataTransferObjects.InputPayload.move">
             <summary>
             Example renaming a property using JsonProperyName
             </summary>
-        </member>
-        <member name="P:ExecuteMove.DataTransferObjects.ComplexOutputPayload.move">
-            <summary>
-            Example renaming a property using JsonProperyName
-            </summary>
-        </member>
-        <member name="T:ExecuteMove.DataTransferObjects.HelloWorldResponse">
-            <summary>
-            Defines the message payload
-            </summary>
-        </member>
-        <member name="P:ExecuteMove.DataTransferObjects.HelloWorldResponse.ResultMessage">
-            <summary>
-            Contains message that was computed on the server
-            </summary>
-            <value>
-            The resultant message computed by the server
-            </value>
-        </member>
-        <member name="P:ExecuteMove.DataTransferObjects.HelloWorldResponse.ProcessedDateTime">
-            <summary>
-            Contains the date and time the message was computed by the server
-            </summary>
-            <value>
-            The date and time the message was computed by the server
-            </value>
-        </member>
-        <member name="T:ExecuteMove.DataTransferObjects.MessagePayload">
-            <summary>
-            Defines the message payload
-            </summary>
-        </member>
-        <member name="P:ExecuteMove.DataTransferObjects.MessagePayload.MessageContent">
-            <summary>
-            The message content
-            </summary>
-            <value>
-            The content of the message.
-            </value>
-        </member>
-        <member name="P:ExecuteMove.DataTransferObjects.MessagePayload.MessageDateTime">
-            <summary>
-            The message date and time
-            </summary>
-            <value>
-            The message date and time.
-            </value>
         </member>
     </members>
 </doc>

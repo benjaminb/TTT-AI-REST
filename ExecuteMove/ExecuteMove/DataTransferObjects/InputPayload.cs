@@ -6,12 +6,11 @@ namespace ExecuteMove.DataTransferObjects
     /// <summary>
     /// Test class
     /// </summary>
-    public class ComplexInputPayload
+    public class InputPayload
     {
         /// <summary>
         /// Example renaming a property using JsonProperyName
         /// </summary>
-        //[JsonPropertyName("move")]
         public int move { get; set; }
         public string azurePlayerSymbol { get; set; }
         public string humanPlayerSymbol { get; set; }
