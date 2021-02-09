@@ -1,0 +1,16 @@
+# CSCIE 94
+## Assignment 1
+## Benjamin Basseri
+`basseri@cs50.harvard.edu`
+
+---
+### Installation notes
+
+The is the zip of the directory containing the .sln file and the project folders. I don't know
+if Visual Studio or C# requires anything further.
+
+---
+### Implementation notes
+
+This solution implements the minimax adversarial search algorithm to produce
+intelligent responses to Tic-Tac-Toe moves.

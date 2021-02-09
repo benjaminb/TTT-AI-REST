@@ -18,15 +18,27 @@ namespace ExecuteMove.DataTransferObjects
         public string humanPlayerSymbol { get; set; }
         public List<string> gameBoard { get; set; }
         public string message { get; set; }
+
+        public bool ValidPlayerMarkers()
+        {
+            if (!(
+                ( azurePlayerSymbol.Equals(TicTacToe.X) && humanPlayerSymbol.Equals(TicTacToe.O) )
+                || ( azurePlayerSymbol.Equals(TicTacToe.O) && humanPlayerSymbol.Equals(TicTacToe.X)) )
+                )
+            {
+                return false;
+            }
+            return true;
+        }
     }
 
     public class TicTacToe
     {
-        private const string X = "X";
-        private const string O = "O";
-        private const string UNMARKED = "?";
+        public const string X = "X";
+        public const string O = "O";
+        public const string UNMARKED = "?";
         public const string GAME_NOT_DONE_STR = "inconclusive";
-        private const string TIE_STR = "tie";
+        public const string TIE_STR = "tie";
         private static HashSet<string> VALID_SYMBOLS = new HashSet<string>() { X, O, UNMARKED };
 
         public string[,] board;

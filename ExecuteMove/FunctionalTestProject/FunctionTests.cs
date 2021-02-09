@@ -138,6 +138,27 @@ namespace FunctionalTestProject
             Assert.AreEqual(StatusCodes.Status400BadRequest, (int)resultObject.Response.StatusCode);
         }
 
+        // Tests that players can't have the same marker
+        [TestMethod]
+        public async Task BothPlayersXTest()
+        {
+            // Arrange 
+            InputPayload InputPayload = new InputPayload()
+            {
+                Move = 1,
+                AzurePlayerSymbol = "X",
+                HumanPlayerSymbol = "X",
+                GameBoard = new List<string> { "!", "O", "?", "?", "?", "?", "?", "?", "?" },
+                Message = "no message"
+            };
+
+            // Act
+            HttpOperationResponse<object> resultObject = await _client.ProcessComplexInputWithHttpMessagesAsync(InputPayload);
+
+            // Assert
+            Assert.AreEqual(StatusCodes.Status400BadRequest, (int)resultObject.Response.StatusCode);
+        }
+
         // Tests that the endpoint rejects a list of less than 9 markers
         [TestMethod]
         public async Task TooFewMarkersTest()

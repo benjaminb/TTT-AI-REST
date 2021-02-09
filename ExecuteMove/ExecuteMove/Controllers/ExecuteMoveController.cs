@@ -35,9 +35,14 @@ namespace ExecuteMove.Controllers
         [ProducesResponseType(typeof(int), StatusCodes.Status400BadRequest)] // Tells swagger that the response format will be an int for a BadRequest (400)
         public ActionResult<OutputPayload> ProcessComplexInput([FromBody] InputPayload inputPayload)
         {
-            // Ensure valid board
-            if (!(TicTacToe.BoardIsValid(inputPayload.gameBoard)))
+            // Ensure valid player markers, valid board
+            if (!(inputPayload.ValidPlayerMarkers())
+                || (!(TicTacToe.BoardIsValid(inputPayload.gameBoard))) )
                 return BadRequest(400);
+
+            //// Ensure valid board
+            //if (!(TicTacToe.BoardIsValid(inputPayload.gameBoard)))
+            //    return BadRequest(400);
 
             // Compute response
             TicTacToe ttt = new TicTacToe(inputPayload.gameBoard,
