@@ -143,12 +143,13 @@ namespace ExecuteMove.DataTransferObjects
             return value;
         }
 
+        // Uses minimax search to find the optimal move
         public int MinimaxNextMove()
         {
             if (winStatus.winner != GAME_NOT_DONE_STR)
                 return -1; // sentinel value for no move
             List<(int, int)> moves = TicTacToe.AvailableMoves(board);
-            // Case: Azure is maximizer ("X")
+
             if (azurePlayerSymbol.Equals(X))
                 return TupleToMove(moves.OrderByDescending(move => MinValue(
                         ResultingBoard(board, move, X))).First());
@@ -157,7 +158,64 @@ namespace ExecuteMove.DataTransferObjects
                     ResultingBoard(board, move, O))).Last());
         }
 
-        // Chooses next move
+        public int MinimaxWithPruningMove()
+        {
+            if (winStatus.winner != GAME_NOT_DONE_STR)
+                return -1; // sentinel value for no move
+            List<(int, int)> moves = TicTacToe.AvailableMoves(board);
+
+            if (azurePlayerSymbol.Equals(X))
+                return TupleToMove(moves.OrderByDescending(move =>
+                    alphabeta(int.MinValue, int.MaxValue, false, ResultingBoard(board, move, X))
+                    ).First());
+            else
+                return TupleToMove(moves.OrderByDescending(move =>
+                    alphabeta(int.MinValue, int.MaxValue, true, ResultingBoard(board, move, X))
+                    ).Last());
+        }
+
+        public static int alphabeta(int alpha, int beta, bool maximizer, string[,] board)
+        {
+            // Base case: board is terminal
+            WinStatus ws = GetWinStatus(board);
+            if (!(ws.winner.Equals(GAME_NOT_DONE_STR)))
+                return ValueOfGame(board);
+
+            // Recursive case: game not done yet
+            List<(int, int)> moves = TicTacToe.AvailableMoves(board);
+            if (maximizer)
+            {
+                int value = int.MinValue;
+                foreach ((int,int) move in moves)
+                {
+                    // Recurse
+                    value = Math.Max(value, alphabeta(alpha, beta, false, ResultingBoard(board, move, X)));
+                    alpha = Math.Max(alpha, value);
+
+                    // Prune?
+                    if (alpha >= beta)
+                        break;
+                }
+                return value;
+            }
+            else
+            {
+                int value = int.MaxValue;
+                foreach ((int,int) move in moves)
+                {
+                    // Recurse
+                    value = Math.Min(value, alphabeta(alpha, beta, true, ResultingBoard(board, move, O)));
+                    beta = Math.Min(beta, value);
+
+                    // Prune?
+                    if (beta <= alpha)
+                        break;
+                }
+                return value;
+            }
+        }
+
+        // Just chooses the first empty tile it finds
         public (int, int) NextMove()
         {
 
@@ -310,4 +368,17 @@ namespace ExecuteMove.DataTransferObjects
         public string winner { get; set; }
         public List<int> winPositions { get; set; }
     }
+
+    public class Move
+    {
+        public (int, int) move { get; set; }
+        public int value { get; set; }
+
+        public Move((int, int) move, int value)
+        {
+            this.move = move;
+            this.value = value;
+        }
+    }
+
 }

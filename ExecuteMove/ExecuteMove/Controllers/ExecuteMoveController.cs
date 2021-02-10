@@ -40,10 +40,6 @@ namespace ExecuteMove.Controllers
                 || (!(TicTacToe.BoardIsValid(inputPayload.gameBoard))) )
                 return BadRequest(400);
 
-            //// Ensure valid board
-            //if (!(TicTacToe.BoardIsValid(inputPayload.gameBoard)))
-            //    return BadRequest(400);
-
             // Compute response
             TicTacToe ttt = new TicTacToe(inputPayload.gameBoard,
                 inputPayload.azurePlayerSymbol, inputPayload.humanPlayerSymbol);
@@ -53,7 +49,8 @@ namespace ExecuteMove.Controllers
             int? nextMove;
             if (ws.winner.Equals(TicTacToe.GAME_NOT_DONE_STR))
             {
-                int choice = ttt.MinimaxNextMove();
+                //int choice = ttt.MinimaxNextMove();
+                int choice = ttt.MinimaxWithPruningMove();
                 ttt[TicTacToe.MoveToTuple(choice)] = inputPayload.azurePlayerSymbol;
                 nextMove = choice;
                 // Recalculate win status
