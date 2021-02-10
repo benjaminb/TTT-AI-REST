@@ -45,14 +45,14 @@ namespace ExecuteMove.Controllers
                 inputPayload.azurePlayerSymbol, inputPayload.humanPlayerSymbol);
             WinStatus ws = ttt.winStatus;
 
-            // Get the AI's next move if game isn't over
+            // If game isn't over, get the AI's next move
             int? nextMove;
             if (ws.winner.Equals(TicTacToe.GAME_NOT_DONE_STR))
             {
-                //int choice = ttt.MinimaxNextMove();
                 int choice = ttt.MinimaxWithPruningMove();
                 ttt[TicTacToe.IndexToTuple(choice)] = inputPayload.azurePlayerSymbol;
                 nextMove = choice;
+
                 // Recalculate win status
                 ws = TicTacToe.GetWinStatus(ttt.board);
             }
@@ -62,14 +62,12 @@ namespace ExecuteMove.Controllers
             // Assemble response payload
             OutputPayload complexOutput = new OutputPayload()
             {
-                //move = (moveTuple.Item1 < 0) ? null : TicTacToe.TupleToMove(moveTuple),
                 move = nextMove,
                 azurePlayerSymbol = inputPayload.azurePlayerSymbol,
                 humanPlayerSymbol = inputPayload.humanPlayerSymbol,
                 winner = ws.winner,
                 winPositions = (ws.winPositions == null) ? null : ws.winPositions.ConvertAll(i => i.ToString()),
                 gameBoard = TicTacToe.BoardToList(ttt.board),
-                message = "msg",
             };
 
             return complexOutput;

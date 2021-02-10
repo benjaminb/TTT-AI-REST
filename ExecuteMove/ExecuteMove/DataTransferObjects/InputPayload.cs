@@ -19,6 +19,7 @@ namespace ExecuteMove.DataTransferObjects
         public List<string> gameBoard { get; set; }
         public string message { get; set; }
 
+        // Validates the markers passed in
         public bool ValidPlayerMarkers()
         {
             if (!(
@@ -32,7 +33,7 @@ namespace ExecuteMove.DataTransferObjects
         }
     }
 
-    // Encapsualted gameplay and move search logic
+    // Encapsualtes gameplay and move search logic
     public class TicTacToe
     {
         public const string X = "X";
@@ -59,7 +60,7 @@ namespace ExecuteMove.DataTransferObjects
             humanPlayerSymbol = huPlayerSymbol;
         }
 
-        // Allow 2d indexing by tuples
+        // Implements board indexing by tuples
         public string this[(int, int) coord]
         {
             get { return board[coord.Item1, coord.Item2]; }
@@ -72,7 +73,7 @@ namespace ExecuteMove.DataTransferObjects
             return (index / 3, index % 3);
         }
 
-        public static int TupleToMove((int, int) coords)
+        public static int TupleToIndex((int, int) coords)
         {
             return 3 * coords.Item1 + coords.Item2;
         }
@@ -105,6 +106,8 @@ namespace ExecuteMove.DataTransferObjects
 
             return true;
         }
+
+        // Checks if board is at a terminal state
         public static bool IsTerminal(string[,] board)
         {
             WinStatus ws = GetWinStatus(board);
@@ -122,6 +125,7 @@ namespace ExecuteMove.DataTransferObjects
             return openTiles;
         }
 
+        // Sorting function for minimax
         public static int MaxValue(string[,] board)
         {
             if (IsTerminal(board))
@@ -133,6 +137,7 @@ namespace ExecuteMove.DataTransferObjects
             return value;
         }
 
+        // Sorting function for minimax
         public static int MinValue(string[,] board)
         {
             if (IsTerminal(board))
@@ -152,13 +157,15 @@ namespace ExecuteMove.DataTransferObjects
             List<(int, int)> moves = TicTacToe.AvailableMoves(board);
 
             if (azurePlayerSymbol.Equals(X))
-                return TupleToMove(moves.OrderByDescending(move => MinValue(
+                return TupleToIndex(moves.OrderByDescending(move => MinValue(
                         ResultingBoard(board, move, X))).First());
             else
-                return TupleToMove(moves.OrderByDescending(move => MaxValue(
+                return TupleToIndex(moves.OrderByDescending(move => MaxValue(
                     ResultingBoard(board, move, O))).Last());
         }
 
+        // Implements Minimax search with alpha-beta pruning
+        // See https://en.wikipedia.org/wiki/Minimax
         public int MinimaxWithPruningMove()
         {
             if (winStatus.winner != GAME_NOT_DONE_STR)
@@ -166,15 +173,16 @@ namespace ExecuteMove.DataTransferObjects
             List<(int, int)> moves = TicTacToe.AvailableMoves(board);
 
             if (azurePlayerSymbol.Equals(X))
-                return TupleToMove(moves.OrderByDescending(move =>
+                return TupleToIndex(moves.OrderByDescending(move =>
                     alphabeta(int.MinValue, int.MaxValue, false, ResultingBoard(board, move, X))
                     ).First());
             else
-                return TupleToMove(moves.OrderByDescending(move =>
+                return TupleToIndex(moves.OrderByDescending(move =>
                     alphabeta(int.MinValue, int.MaxValue, true, ResultingBoard(board, move, X))
                     ).Last());
         }
 
+        // Sorting function for minimax with alpha-beta pruning
         public static int alphabeta(int alpha, int beta, bool maximizer, string[,] board)
         {
             // Base case: board is terminal
@@ -214,26 +222,7 @@ namespace ExecuteMove.DataTransferObjects
                 }
                 return value;
             }
-        }
-
-        // Just chooses the first empty tile it finds
-        public (int, int) NextMove()
-        {
-
-            // Check for a winner or tie, if so next move is null
-            if (winStatus.winner != GAME_NOT_DONE_STR)
-                return (-1, -1); // sentinel value for no move
-
-            for (int i = 0; i < 3; i++)
-                for (int j = 0; j < 3; j++)
-                    if (board[i, j] == "?")
-                    {
-                        board[i, j] = azurePlayerSymbol;
-                        return (i, j);
-                    }
-            return (-1, -1); // No moves left
-        }
-        
+        }       
 
         // Determines whose turn it is
         public string Player()
@@ -274,6 +263,8 @@ namespace ExecuteMove.DataTransferObjects
             else
                 return 0;
         }
+
+        // Returns a WinStatus object for the given board
         public static WinStatus GetWinStatus(string[,] board)
         {
 
@@ -290,7 +281,7 @@ namespace ExecuteMove.DataTransferObjects
                     // Get the win positions
                     List<int> winPositions = new List<int>();
                     for (int j = 0; j < 3; j++)
-                        winPositions.Add(TupleToMove((i, j)));
+                        winPositions.Add(TupleToIndex((i, j)));
 
                     // Return WinPositions object
                     return new WinStatus()
@@ -306,7 +297,7 @@ namespace ExecuteMove.DataTransferObjects
                     // Get the win positions
                     List<int> winPositions = new List<int>();
                     for (int j = 0; j < 3; j++)
-                        winPositions.Add(TupleToMove((j, i)));
+                        winPositions.Add(TupleToIndex((j, i)));
 
                     return new WinStatus()
                     {
@@ -354,6 +345,7 @@ namespace ExecuteMove.DataTransferObjects
             };
         }
 
+        // Returns a 2d board to a 1d list
         public static List<string> BoardToList(string[,] board)
         {
             List<string> boardList = new List<string>();
@@ -364,22 +356,10 @@ namespace ExecuteMove.DataTransferObjects
         }
     }
 
+    // Class to encapsulate the win status of a board plus the winning positions, if any
     public class WinStatus
     {
         public string winner { get; set; }
         public List<int> winPositions { get; set; }
     }
-
-    public class Move
-    {
-        public (int, int) move { get; set; }
-        public int value { get; set; }
-
-        public Move((int, int) move, int value)
-        {
-            this.move = move;
-            this.value = value;
-        }
-    }
-
 }

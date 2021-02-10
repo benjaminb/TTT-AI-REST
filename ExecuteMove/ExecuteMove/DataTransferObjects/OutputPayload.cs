@@ -15,7 +15,6 @@ namespace ExecuteMove.DataTransferObjects
         public string winner { get; set; }
         public List<string> winPositions { get; set; }
         public List<string> gameBoard { get; set; }
-        public string message { get; set; }
     }
 }
 
