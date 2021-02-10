@@ -10,7 +10,19 @@ The is the zip of the directory containing the .sln file and the project folders
 if Visual Studio or C# requires anything further.
 
 ---
+### Cloud URL
+The REST api has been published to https://tictactoe-ai-api.azurewebsites.net/api/v1/ttt/executemove
+
+And a Swagger interface can be found at https://tictactoe-ai-api.azurewebsites.net/index.html
+---
 ### Implementation notes
 
 This solution implements the minimax adversarial search algorithm to produce
-intelligent responses to Tic-Tac-Toe moves.
+intelligent responses to Tic-Tac-Toe moves. Given a game state, it explores the
+decision tree looking for optimal moves (that is, branches that lead to a win or
+at least a tie).
+
+Furthermore I implemented alpha-beta pruning, which is a search optimization that
+allows some branches of the decision tree to be left unexplored if it becomes
+clear that a better choice has already been found. For more information see
+https://en.wikipedia.org/wiki/Minimax.

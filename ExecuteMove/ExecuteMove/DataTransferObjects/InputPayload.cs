@@ -10,16 +10,29 @@ namespace ExecuteMove.DataTransferObjects
     /// </summary>
     public class InputPayload
     {
-        /// <summary>
-        /// Example renaming a property using JsonProperyName
-        /// </summary>
+        /// <value>
+        /// The move made by the human player
+        /// </value>
         public int move { get; set; }
-        public string azurePlayerSymbol { get; set; }
-        public string humanPlayerSymbol { get; set; }
-        public List<string> gameBoard { get; set; }
-        public string message { get; set; }
 
-        // Validates the markers passed in
+        /// <value>
+        /// The symbol used by the AI player
+        /// </value>
+        public string azurePlayerSymbol { get; set; }
+
+        /// <value>
+        /// The symbol used by the human player
+        /// </value>
+        public string humanPlayerSymbol { get; set; }
+
+        /// <value>
+        /// The state of the game board
+        /// </value>
+        public List<string> gameBoard { get; set; }
+
+        /// <summary>
+        /// Validates the markers in the input object
+        /// </summary>
         public bool ValidPlayerMarkers()
         {
             if (!(
@@ -33,7 +46,9 @@ namespace ExecuteMove.DataTransferObjects
         }
     }
 
-    // Encapsualtes gameplay and move search logic
+    /// <summary>
+    /// Encapsualtes gameplay and move search logic
+    /// </summary>
     public class TicTacToe
     {
         public const string X = "X";
@@ -48,6 +63,10 @@ namespace ExecuteMove.DataTransferObjects
         public string azurePlayerSymbol;
         public string humanPlayerSymbol;
 
+
+        /// <summary>
+        /// Class constructor
+        /// </summary>
         public TicTacToe(List<string> inputStr, string azPlayerSymbol, string huPlayerSymbol)
         {
             // Convert board as list to 2d array
@@ -60,25 +79,37 @@ namespace ExecuteMove.DataTransferObjects
             humanPlayerSymbol = huPlayerSymbol;
         }
 
-        // Implements board indexing by tuples
+
+        /// <summary>
+        /// Implements board indexing by tuples
+        /// </summary>
         public string this[(int, int) coord]
         {
             get { return board[coord.Item1, coord.Item2]; }
             set { board[coord.Item1, coord.Item2] = value; }
         }
 
-        // Converts 1d index to 2d index
+
+        /// <summary>
+        /// Converts 1d index to 2d index
+        /// </summary>
         public static (int, int) IndexToTuple(int index)
         {
             return (index / 3, index % 3);
         }
 
+
+        /// <summary>
+        /// Converts 2d index to 1d index
+        /// </summary>
         public static int TupleToIndex((int, int) coords)
         {
             return 3 * coords.Item1 + coords.Item2;
         }
 
-        // Validates board
+        /// <summary>
+        /// Validates the board
+        /// </summary>
         public static bool BoardIsValid(List<string> boardList)
         {
             if (boardList.Count != 9)
@@ -107,14 +138,20 @@ namespace ExecuteMove.DataTransferObjects
             return true;
         }
 
-        // Checks if board is at a terminal state
+
+        /// <summary>
+        /// Checks if board is at a terminal state
+        /// </summary>
         public static bool IsTerminal(string[,] board)
         {
             WinStatus ws = GetWinStatus(board);
             return (ws.winner.Equals(GAME_NOT_DONE_STR)) ? false : true;
         }
 
-        // Returns a list of available moves
+
+        /// <summary>
+        /// Returns a list of available moves
+        /// </summary>
         public static List<(int,int)> AvailableMoves(string[,] board)
         {
             List<(int, int)> openTiles = new List<(int, int)>();
@@ -125,7 +162,10 @@ namespace ExecuteMove.DataTransferObjects
             return openTiles;
         }
 
-        // Sorting function for minimax
+
+        /// <summary>
+        /// Sorting function for minimax
+        /// </summary>
         public static int MaxValue(string[,] board)
         {
             if (IsTerminal(board))
@@ -137,7 +177,9 @@ namespace ExecuteMove.DataTransferObjects
             return value;
         }
 
-        // Sorting function for minimax
+        /// <summary>
+        /// Sorting function for minimax
+        /// </summary>
         public static int MinValue(string[,] board)
         {
             if (IsTerminal(board))
@@ -149,7 +191,10 @@ namespace ExecuteMove.DataTransferObjects
             return value;
         }
 
-        // Uses minimax search to find the optimal move
+
+        /// <summary>
+        /// Uses minimax search to find the optimal move
+        /// </summary>
         public int MinimaxNextMove()
         {
             if (winStatus.winner != GAME_NOT_DONE_STR)
@@ -164,8 +209,11 @@ namespace ExecuteMove.DataTransferObjects
                     ResultingBoard(board, move, O))).Last());
         }
 
-        // Implements Minimax search with alpha-beta pruning
-        // See https://en.wikipedia.org/wiki/Minimax
+
+        /// <summary>
+        /// Implements Minimax search with alpha-beta pruning
+        /// See https://en.wikipedia.org/wiki/Minimax
+        /// </summary>
         public int MinimaxWithPruningMove()
         {
             if (winStatus.winner != GAME_NOT_DONE_STR)
@@ -182,7 +230,10 @@ namespace ExecuteMove.DataTransferObjects
                     ).Last());
         }
 
-        // Sorting function for minimax with alpha-beta pruning
+
+        /// <summary>
+        /// Sorting function for minimax with alpha-beta pruning
+        /// </summary>
         public static int alphabeta(int alpha, int beta, bool maximizer, string[,] board)
         {
             // Base case: board is terminal
@@ -222,9 +273,12 @@ namespace ExecuteMove.DataTransferObjects
                 }
                 return value;
             }
-        }       
+        }
 
-        // Determines whose turn it is
+
+        /// <summary>
+        /// Determines whose turn it is
+        /// </summary>
         public string Player()
         {
             int count = 0;
@@ -235,7 +289,9 @@ namespace ExecuteMove.DataTransferObjects
             return count % 2 == 0 ? X : O;
         }
 
-        // Returns board resulting from making a valid move
+        /// <summary>
+        /// Returns board resulting from making a valid move
+        /// </summary>
         public static string[,] ResultingBoard(string[,] bd, (int, int) move, string marker)
         {
             if (!(bd[move.Item1, move.Item2].Equals(UNMARKED)))
@@ -252,7 +308,9 @@ namespace ExecuteMove.DataTransferObjects
             }
         }
 
-        // For a zero-sum game, X seeks to maximize value and O seeks to minimize
+        /// <summary>
+        /// For a zero-sum game, X seeks to maximize value and O seeks to minimize
+        /// </summary>
         public static int ValueOfGame(string[,] board)
         {
             WinStatus ws = GetWinStatus(board);
@@ -264,7 +322,11 @@ namespace ExecuteMove.DataTransferObjects
                 return 0;
         }
 
-        // Returns a WinStatus object for the given board
+
+        /// <summary>
+        /// Returns a WinStatus object for the given board
+        /// See <see cref="WinStatus"/> for details on this class
+        /// </summary>
         public static WinStatus GetWinStatus(string[,] board)
         {
 
@@ -356,7 +418,9 @@ namespace ExecuteMove.DataTransferObjects
         }
     }
 
-    // Class to encapsulate the win status of a board plus the winning positions, if any
+    /// <summary>
+    /// Class to encapsulate the win status of a board plus the winning positions, if any
+    /// </summary>
     public class WinStatus
     {
         public string winner { get; set; }

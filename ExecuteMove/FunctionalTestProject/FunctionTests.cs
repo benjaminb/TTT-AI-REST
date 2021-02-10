@@ -36,7 +36,6 @@ namespace FunctionalTestProject
                 AzurePlayerSymbol = "O",
                 HumanPlayerSymbol = "X",
                 GameBoard = new List<string> { "X", "O", "O", "X", "?", "?", "X", "?", "?" },
-                Message = "no message"
             };
 
             // Act
@@ -57,7 +56,6 @@ namespace FunctionalTestProject
                 AzurePlayerSymbol = "X",
                 HumanPlayerSymbol = "O",
                 GameBoard = new List<string> { "X", "O", "X", "X", "O", "?", "?", "O", "?" },
-                Message = "no message"
             };
 
             // Act
@@ -78,7 +76,6 @@ namespace FunctionalTestProject
                 AzurePlayerSymbol = "X",
                 HumanPlayerSymbol = "O",
                 GameBoard = new List<string> { "X", "O", "X", "X", "O", "X", "O", "X", "O" },
-                Message = "no message"
             };
 
             // Act
@@ -99,7 +96,6 @@ namespace FunctionalTestProject
                 AzurePlayerSymbol = "X",
                 HumanPlayerSymbol = "O",
                 GameBoard = new List<string> { "X", "O", "?", "?", "?", "?", "?", "?", "?" },
-                Message = "no message"
             };
 
             // Act
@@ -128,7 +124,6 @@ namespace FunctionalTestProject
                 AzurePlayerSymbol = "X",
                 HumanPlayerSymbol = "O",
                 GameBoard = new List<string> { "!", "O", "?", "?", "?", "?", "?", "?", "?" },
-                Message = "no message"
             };
 
             // Act
@@ -149,7 +144,6 @@ namespace FunctionalTestProject
                 AzurePlayerSymbol = "X",
                 HumanPlayerSymbol = "X",
                 GameBoard = new List<string> { "!", "O", "?", "?", "?", "?", "?", "?", "?" },
-                Message = "no message"
             };
 
             // Act
@@ -170,7 +164,6 @@ namespace FunctionalTestProject
                 AzurePlayerSymbol = "X",
                 HumanPlayerSymbol = "O",
                 GameBoard = new List<string> { "X", "O" },
-                Message = "no message"
             };
 
             // Act
@@ -191,7 +184,6 @@ namespace FunctionalTestProject
                 AzurePlayerSymbol = "X",
                 HumanPlayerSymbol = "O",
                 GameBoard = new List<string> { "X", "O", "?", "?", "?", "?", "?", "?", "?", "?" },
-                Message = "no message"
             };
 
             // Act
@@ -212,7 +204,6 @@ namespace FunctionalTestProject
                 AzurePlayerSymbol = "X",
                 HumanPlayerSymbol = "O",
                 GameBoard = new List<string> { "X", "O", "O", "?", "?", "?", "?", "?", "?" },
-                Message = "no message"
             };
 
             // Act

@@ -29,13 +29,155 @@
             </summary>
         </member>
         <member name="P:ExecuteMove.DataTransferObjects.InputPayload.move">
+            <value>
+            The move made by the human player
+            </value>
+        </member>
+        <member name="P:ExecuteMove.DataTransferObjects.InputPayload.azurePlayerSymbol">
+            <value>
+            The symbol used by the AI player
+            </value>
+        </member>
+        <member name="P:ExecuteMove.DataTransferObjects.InputPayload.humanPlayerSymbol">
+            <value>
+            The symbol used by the human player
+            </value>
+        </member>
+        <member name="P:ExecuteMove.DataTransferObjects.InputPayload.gameBoard">
+            <value>
+            The state of the game board
+            </value>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.InputPayload.ValidPlayerMarkers">
             <summary>
-            Example renaming a property using JsonProperyName
+            Validates the markers in the input object
+            </summary>
+        </member>
+        <member name="T:ExecuteMove.DataTransferObjects.TicTacToe">
+            <summary>
+            Encapsualtes gameplay and move search logic
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.#ctor(System.Collections.Generic.List{System.String},System.String,System.String)">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="P:ExecuteMove.DataTransferObjects.TicTacToe.Item(System.ValueTuple{System.Int32,System.Int32})">
+            <summary>
+            Implements board indexing by tuples
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.IndexToTuple(System.Int32)">
+            <summary>
+            Converts 1d index to 2d index
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.TupleToIndex(System.ValueTuple{System.Int32,System.Int32})">
+            <summary>
+            Converts 2d index to 1d index
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.BoardIsValid(System.Collections.Generic.List{System.String})">
+            <summary>
+            Validates the board
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.IsTerminal(System.String[0:,0:])">
+            <summary>
+            Checks if board is at a terminal state
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.AvailableMoves(System.String[0:,0:])">
+            <summary>
+            Returns a list of available moves
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.MaxValue(System.String[0:,0:])">
+            <summary>
+            Sorting function for minimax
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.MinValue(System.String[0:,0:])">
+            <summary>
+            Sorting function for minimax
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.MinimaxNextMove">
+            <summary>
+            Uses minimax search to find the optimal move
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.MinimaxWithPruningMove">
+            <summary>
+            Implements Minimax search with alpha-beta pruning
+            See https://en.wikipedia.org/wiki/Minimax
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.alphabeta(System.Int32,System.Int32,System.Boolean,System.String[0:,0:])">
+            <summary>
+            Sorting function for minimax with alpha-beta pruning
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.Player">
+            <summary>
+            Determines whose turn it is
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.ResultingBoard(System.String[0:,0:],System.ValueTuple{System.Int32,System.Int32},System.String)">
+            <summary>
+            Returns board resulting from making a valid move
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.ValueOfGame(System.String[0:,0:])">
+            <summary>
+            For a zero-sum game, X seeks to maximize value and O seeks to minimize
+            </summary>
+        </member>
+        <member name="M:ExecuteMove.DataTransferObjects.TicTacToe.GetWinStatus(System.String[0:,0:])">
+            <summary>
+            Returns a WinStatus object for the given board
+            See <see cref="T:ExecuteMove.DataTransferObjects.WinStatus"/> for details on this class
+            </summary>
+        </member>
+        <member name="T:ExecuteMove.DataTransferObjects.WinStatus">
+            <summary>
+            Class to encapsulate the win status of a board plus the winning positions, if any
+            </summary>
+        </member>
+        <member name="T:ExecuteMove.DataTransferObjects.OutputPayload">
+            <summary>
+            Structures the output for the response
             </summary>
         </member>
         <member name="P:ExecuteMove.DataTransferObjects.OutputPayload.move">
             <summary>
-            Example renaming a property using JsonProperyName
+            The move returned, or null if the game was over
+            </summary>
+        </member>
+        <member name="P:ExecuteMove.DataTransferObjects.OutputPayload.azurePlayerSymbol">
+            <summary>
+            The symbol used by the AI player
+            </summary>
+        </member>
+        <member name="P:ExecuteMove.DataTransferObjects.OutputPayload.humanPlayerSymbol">
+            <summary>
+            The symbol used by the human player
+            </summary>
+        </member>
+        <member name="P:ExecuteMove.DataTransferObjects.OutputPayload.winner">
+            <summary>
+            The symbol of the winning player, or null of no winner
+            </summary>
+        </member>
+        <member name="P:ExecuteMove.DataTransferObjects.OutputPayload.winPositions">
+            <summary>
+            The positions indicating the win, or null if no win
+            </summary>
+        </member>
+        <member name="P:ExecuteMove.DataTransferObjects.OutputPayload.gameBoard">
+            <summary>
+            The state of the game board
             </summary>
         </member>
     </members>
