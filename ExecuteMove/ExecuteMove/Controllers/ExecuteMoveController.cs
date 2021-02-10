@@ -51,7 +51,7 @@ namespace ExecuteMove.Controllers
             {
                 //int choice = ttt.MinimaxNextMove();
                 int choice = ttt.MinimaxWithPruningMove();
-                ttt[TicTacToe.MoveToTuple(choice)] = inputPayload.azurePlayerSymbol;
+                ttt[TicTacToe.IndexToTuple(choice)] = inputPayload.azurePlayerSymbol;
                 nextMove = choice;
                 // Recalculate win status
                 ws = TicTacToe.GetWinStatus(ttt.board);

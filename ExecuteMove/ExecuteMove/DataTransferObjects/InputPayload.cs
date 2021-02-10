@@ -6,7 +6,7 @@ using System.Linq;
 namespace ExecuteMove.DataTransferObjects
 {
     /// <summary>
-    /// Test class
+    /// Converts input payload into game information
     /// </summary>
     public class InputPayload
     {
@@ -32,6 +32,7 @@ namespace ExecuteMove.DataTransferObjects
         }
     }
 
+    // Encapsualted gameplay and move search logic
     public class TicTacToe
     {
         public const string X = "X";
@@ -66,7 +67,7 @@ namespace ExecuteMove.DataTransferObjects
         }
 
         // Converts 1d index to 2d index
-        public static (int, int) MoveToTuple(int index)
+        public static (int, int) IndexToTuple(int index)
         {
             return (index / 3, index % 3);
         }
